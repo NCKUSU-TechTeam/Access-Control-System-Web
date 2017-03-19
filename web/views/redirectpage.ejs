@@ -1,0 +1,24 @@
+<html>
+
+<head>
+</head>
+    <header>
+        <% include ../elements/header %>
+        <% include ../elements/navigator %>
+    </header>
+<body onload="redirection();">
+    <div class="container">
+        <div class="jumbotron">
+            <h1><%= msg %></h1>
+        </div>
+    </div>
+
+</body>
+<script type="text/javascript">
+    function redirection(){
+        setInterval(function(){
+            window.location.replace("/");
+        },2000);
+    }
+</script>
+</html>
