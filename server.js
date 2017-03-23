@@ -8,17 +8,16 @@ const url = require('url');
 const path = require('path');
 
 const bodyParser = require('body-parser');
-const moment = require('moment');
 const jsonfs = require('jsonfile');
 
-const wpi = require('node-wiringpi');
-wpi.pin_mode(7,wpi.PIN_MODE.OUTPUT);
+//const wpi = require('node-wiringpi');
+//wpi.pin_mode(7,wpi.PIN_MODE.OUTPUT);
 
 const min_jsondb = require('./min_jsondb');
 //const gate = require('./gate');
 // Compile at first
-//gate.compile();
-//gate.test();
+gate.compile();
+gate.test();
 
 /* Redirect views path */
 app.set('views', path.join(__dirname, 'web/views'));
@@ -61,10 +60,10 @@ app.get('/register',function(req,res){
                 msg: "Redirect..."
             });
             // FIXME : using child process to open the gate
-            // gate.openGate();
-            setTimeout(function(){
+            gate.openGate();
+            /*setTimeout(function(){
                 wpi.digital_write(7,wpi.WRITE.HIGH);
-            },3000);
+            },3000);*/
         }
     });
 });
@@ -85,10 +84,10 @@ app.get('/open',function(req,res){
                 msg: "Redirect..."
             });
             // FIXME : using child process to open the gate
-            // gate.openGate();
-            setTimeout(function(){
+            gate.openGate();
+            /*setTimeout(function(){
                 wpi.digital_write(7,wpi.WRITE.HIGH);
-            },3000);
+            },3000);*/
         }
     })
 });

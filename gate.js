@@ -2,7 +2,7 @@
 *   Opening the gate
 */
 function test(){
-    let comp = require('child_process').exec;
+    var comp = require('child_process').exec;
     comp('dir',function(error,stdout,stderr){
         console.log('[Test] stdout:',stdout);
         console.log('[Test] stderr: ',stderr);
@@ -13,7 +13,7 @@ function test(){
 }
 
 function compile(){
-    let comp = require('child_process').exec;
+    var comp = require('child_process').exec;
     comp('cd wiring && make -m',function(error,stdout,stderr){
         console.log('[compile] stdout: ',stdout);
         console.log('[compile] stderr: ',stderr);
@@ -24,7 +24,7 @@ function compile(){
 }
 
 function openGate(){
-    let exec = require('child_process').exec;
+    var exec = require('child_process').exec;
     exec('./wiring/open',function(error,stdout,stderr){
         console.log('[open] stdout: ',stdout);
         console.log('[open] stderr: ',stderr);
@@ -39,7 +39,7 @@ function openGate(){
 }
 
 function closeGate(){
-    let exec = require('child_process').exec;
+    var exec = require('child_process').exec;
     exec('./wiring/close',function(error,stdout,stderr){
         console.log('[close] stdout: ',stdout);
         console.log('[close] stderr: ',stderr);
