@@ -12,6 +12,7 @@ const moment = require('moment');
 const jsonfs = require('jsonfile');
 
 const min_jsondb = require('./min_jsondb');
+const gate = require('./gate');
 
 /* Redirect views path */
 app.set('views', path.join(__dirname, 'web/views'));
@@ -54,6 +55,7 @@ app.get('/register',function(req,res){
                 msg: "Redirect..."
             });
             // FIXME : using child process to open the gate
+            gate.openGate();
         }
     });
 });
@@ -74,6 +76,7 @@ app.get('/open',function(req,res){
                 msg: "Redirect..."
             });
             // FIXME : using child process to open the gate
+            gate.openGate();
         }
     })
 });
