@@ -1,7 +1,7 @@
-all: open closeGate
+all: open close
 
 open:
-	gcc -Wall -o open openGate.c -lwiring -lpthread
+	gcc -Wall -o open openGate.c -lwiringPi -lpthread
 
 close:
-	gcc -Wall -o close closeGate.c -lwiring -lpthread
+	gcc -Wall -o close closeGate.c -lwiringPi -lpthread

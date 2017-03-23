@@ -13,6 +13,9 @@ const jsonfs = require('jsonfile');
 
 const min_jsondb = require('./min_jsondb');
 const gate = require('./gate');
+// Compile at first
+gate.compile();
+gate.test();
 
 /* Redirect views path */
 app.set('views', path.join(__dirname, 'web/views'));
