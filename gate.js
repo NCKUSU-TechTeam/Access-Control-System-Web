@@ -1,20 +1,12 @@
 /**
 *   Opening the gate
 */
-function test(){
-    var comp = require('child_process').exec;
-    comp('dir',function(error,stdout,stderr){
-        console.log('[Test] stdout:',stdout);
-        console.log('[Test] stderr: ',stderr);
-        if(error != null){
-            console.log('[Test] exec error: ',error);
-        }
-    });
-}
+const path = require('path');
+const config = require(path.join(__dirname,'config.json'));
 
 function compile(){
     var comp = require('child_process').exec;
-    comp('cd wiring && make -m',function(error,stdout,stderr){
+    comp('cd wiring && make -b',function(error,stdout,stderr){
         console.log('[compile] stdout: ',stdout);
         console.log('[compile] stderr: ',stderr);
         if(error != null){
@@ -35,7 +27,7 @@ function openGate(){
     /* And using time interval to close */
     setTimeout(function(){
         closeGate();
-    },3000);
+    },config['interval'].gateopentime);
 }
 
 function closeGate(){

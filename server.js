@@ -10,14 +10,10 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const jsonfs = require('jsonfile');
 
-//const wpi = require('node-wiringpi');
-//wpi.pin_mode(7,wpi.PIN_MODE.OUTPUT);
-
 const min_jsondb = require('./min_jsondb');
-//const gate = require('./gate');
+const gate = require('./gate');
 // Compile at first
 gate.compile();
-gate.test();
 
 /* Redirect views path */
 app.set('views', path.join(__dirname, 'web/views'));
@@ -59,22 +55,19 @@ app.get('/register',function(req,res){
                 title: "Open Gate!",
                 msg: "Redirect..."
             });
-            // FIXME : using child process to open the gate
+            // open the gate
             gate.openGate();
-            /*setTimeout(function(){
-                wpi.digital_write(7,wpi.WRITE.HIGH);
-            },3000);*/
         }
     });
 });
 
 // Open gate
-app.get('/open',function(req,res){
+app.get('/openGate',function(req,res){
     var userinfo = url.parse(req.url,true);
-    console.log("User Name : " + userinfo.query.usr);
+    console.log("User Name : " + userinfo.query.loginID);
 
     // Check database
-    min_jsondb.scanUser(userinfo.query.usr,function(err,msg){
+    min_jsondb.scanUser(userinfo.query.loginID,function(err,msg){
         if(err == 0){
             console.log("Error when scan user. msg :"+msg);
         }
@@ -83,11 +76,8 @@ app.get('/open',function(req,res){
                 title: "Open Gate!",
                 msg: "Redirect..."
             });
-            // FIXME : using child process to open the gate
+            // open the gate
             gate.openGate();
-            /*setTimeout(function(){
-                wpi.digital_write(7,wpi.WRITE.HIGH);
-            },3000);*/
         }
     })
 });
