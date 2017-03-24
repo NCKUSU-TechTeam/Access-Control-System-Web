@@ -6,7 +6,7 @@ const config = require(path.join(__dirname,'config.json'));
 
 function compile(){
     var comp = require('child_process').exec;
-    comp('cd wiring && make -b',function(error,stdout,stderr){
+    comp('cd wiring && make -B',function(error,stdout,stderr){
         console.log('[compile] stdout: ',stdout);
         console.log('[compile] stderr: ',stderr);
         if(error != null){
@@ -42,7 +42,6 @@ function closeGate(){
 }
 
 module.exports = {
-    test: test,
     compile: compile,
     openGate: openGate,
     closeGate: closeGate

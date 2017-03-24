@@ -2,10 +2,12 @@
 /* Using an pure platform */
 const express = require('express');
 const app = express();
-
+// component
 const fs = require('fs');
 const url = require('url');
 const path = require('path');
+// Security
+const helmet = require('helmet');
 
 const bodyParser = require('body-parser');
 const jsonfs = require('jsonfile');
@@ -21,9 +23,13 @@ app.set('views', path.join(__dirname, 'web/views'));
 /* Setting static directory */
 app.use(express.static('database'));
 app.use(express.static('wiring'));
-
+// Parsing setting
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
+// Security
+app.use(helmet());
+app.use(helmet.noCache());
+app.use(helmet.referrerPolicy());
 
 /* Setting view engine as EJS file */
 app.set('view engine', 'ejs');
