@@ -3,6 +3,7 @@
 */
 const path = require('path');
 const config = require(path.join(__dirname,'config.json'));
+var logger = require('./logger');
 
 function compile(){
     var comp = require('child_process').exec;
@@ -15,13 +16,20 @@ function compile(){
     });
 }
 
-function openGate(){
+function openGate(id,time){
     var exec = require('child_process').exec;
     exec('./wiring/open',function(error,stdout,stderr){
-        console.log('[open] stdout: ',stdout);
-        console.log('[open] stderr: ',stderr);
         if(error != null){
             console.log('[open] exec error: ',error);
+        }else {
+            console.log('[open] stdout: ',stdout);
+            console.log('[open] stderr: ',stderr);
+            // Logger
+            logger.record(id,time,function(err){
+                if(err){
+                    console.log('[INFO] Logger error.')
+                }
+            });
         }
     });
     /* And using time interval to close */

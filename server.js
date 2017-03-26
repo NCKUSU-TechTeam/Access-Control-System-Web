@@ -11,6 +11,7 @@ const helmet = require('helmet');
 
 const bodyParser = require('body-parser');
 const jsonfs = require('jsonfile');
+const moment = require('moment');
 
 const min_jsondb = require('./min_jsondb');
 const gate = require('./gate');
@@ -62,7 +63,7 @@ app.get('/register',function(req,res){
                 msg: "Redirect..."
             });
             // open the gate
-            gate.openGate();
+            gate.openGate(userinfo.query.usr,moment().format('YYYY-MM-DD-hh-mm-ss-a'));
         }
     });
 });
@@ -83,7 +84,7 @@ app.get('/openGate',function(req,res){
                 msg: "Redirect..."
             });
             // open the gate
-            gate.openGate();
+            gate.openGate(userinfo.query.loginID,moment().format('YYYY-MM-DD-hh-mm-ss-a'));
         }
     })
 });

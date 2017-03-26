@@ -6,6 +6,7 @@
 	},
 	"scripts": {
 		"build": "npm install",
+		"postbuild": "node setup.js",
 		"start": "node server.js",
 		"all": "npm run build && npm run start"
 	},
@@ -18,6 +19,7 @@
 		"body-parser": "^1.15.2",
 		"express": "^4.6.1",
         "ejs": "^2.5.5",
+		"moment": "^2.17.1",
         "jsonfile": "^2.4.0",
 		"helmet": "^3.5.0"
 	}

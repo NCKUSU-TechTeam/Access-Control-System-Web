@@ -1,4 +1,9 @@
 {
+    "setup":{
+        "linux_root": "/tmp",
+        "log_dir": "gate",
+        "gatelog": "gate.log"
+    },
     "interval":{
         "gateopentime": 7000
     }
