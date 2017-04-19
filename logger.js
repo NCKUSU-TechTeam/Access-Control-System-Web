@@ -10,7 +10,8 @@ if(process.platform == "win32"){
     var gatelog = __dirname+'/'+config['setup'].log_dir+'/'+config['setup'].gatelog;
 }
 else if(process.platform == "linux"){
-    var gatelog = config['setup'].linux_root+'/'+config['setup'].log_dir+'/'+config['setup'].gatelog;
+    // var gatelog = config['setup'].linux_root+'/'+config['setup'].log_dir+'/'+config['setup'].gatelog;
+    var gatelog = __dirname+'/'+config['setup'].log_dir+'/'+config['setup'].gatelog;
 }
 
 // Windows record file
@@ -42,5 +43,5 @@ function record_log(id,time,callback){
 }
 
 module.exports = {
-    record_log : record_log
+    record : record_log
 }
