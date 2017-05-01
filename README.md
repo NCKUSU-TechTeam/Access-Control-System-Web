@@ -1,4 +1,5 @@
 # Access-Control-System-Web
+###### version 1.0.0 (update at 2017/5/1)
 - Using web service to control , instead of using NFC/RFID to open the gate.
 - 作為學生會會辦門禁控制系統的實作，與原先實作的 RFID/NFC 刷卡不同的方式，改採用從網頁上輸入 ID 來開啟
 - 目前實作的硬體環境在 orange pi PC plus[more details in appendix].
@@ -14,6 +15,34 @@ npm install -g forever
 # 並把 `package.json` 裏頭 all 的 script 內容改成下列內容 (using `whereis` to locate forever)
 "all": "npm run build && /path/to/forever start --minUptime 1000 --spinSleepTime 1000 server.js"
 ```
+
+### 各自檔案夾功能
+- `database/`
+    - 使用者資料位置
+    - 儲存於 database/ 底下，使用名稱為 key.json 的檔案
+    - clone 之後可以透過更名 key_example.json 來使用
+
+- `gate/`
+    - 門禁紀錄
+    - 配合 database/key.json 的 name，對每個開關門使用的人做紀錄
+    - 紀錄時間格式: 'YYYY-MM-DD-hh-mm-ss-a'
+
+- `web/` 
+    - 主要裝有網頁的內容 & 設計
+    - views/ : 主要的網頁內容
+    - elements/ : 主要為 views/ 裏頭的檔案使用的包裝片段檔(or library)
+
+- `wiring`
+    - 裝載主要控制開關的模組
+    - 配合硬體設計來做開關
+    - 目前的設計是架在原有電子鎖之上，透過鎖門後，切開電源做開關門的動作[see in developer note]。
+
+### 各自原始碼檔案功能
+- `gate.js`: 主要編譯開門程式(write in c)、開門的腳本。
+- `logger.js`: 主要作為使用者開門紀錄的功能(配合 config.json 來做位置的儲存)。之後考慮把所有們系系統資訊都由 logger.js 來做。
+- `min_jsondb.js`: 為操作使用者的部分(新增、確認使用者)，簡易的資料庫。
+- `server.js`: 最主要腳本，控制整個系統的運作。
+- `setup.js`: 為系統第一次架設時所需要的前置動作執行腳本。
 
 ## Key.json 規格
 - name : User ID
