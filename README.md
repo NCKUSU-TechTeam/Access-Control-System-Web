@@ -61,6 +61,12 @@ npm install -g forever
 ## Maintainer (timeline)
 - Kevin Cyu(瞿旭民) : 2016/9 ~ 2017/6 
 
+## 與第三方軟體支援
+- 可以透過實作 RESTful API 的方式，來讓門禁系統與其他 Application 做結合
+- [Demo 影片 - 與防盜鎖結合演示](https://www.youtube.com/watch?v=Vde_Tr0mX0U)
+    - 防盜鎖裝置為一控制板，當發現有劇烈晃動、移動時，便會啟動門禁強制關閉
+    - 為一簡單的演示
+
 ## Appendix
 ### System info (Current - orange pi PC plus)
 ```
